@@ -158,7 +158,7 @@ class AddItemFragment : Fragment() {
         val id = navigationArguments.id
         (requireActivity() as AppCompatActivity).supportActionBar?.title =
             resources.getString(
-                if (isAddFragment(id)) R.string.edit else R.string.add,
+                if (isAddFragment(id)) R.string.add else R.string.edit,
                 type.name.lowercase().replaceFirstChar { it.uppercase() })
     }
 
