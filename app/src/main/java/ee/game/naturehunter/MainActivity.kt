@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import ee.game.naturehunter.R
-import ee.game.naturehunter.constant.C
-import ee.game.naturehunter.ui.AddItemFragmentDirections
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
