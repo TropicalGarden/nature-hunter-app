@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/selectCategoryFragment"
-        android:name="com.example.naturehunter.ui.SelectCategoryFragment"
+        android:name="ee.game.naturehunter.ui.SelectCategoryFragment"
         android:label="@string/select_category">
         <action
             android:id="@+id/action_selectCategoryFragment_to_itemListFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemListFragment"
-        android:name="com.example.naturehunter.ui.ItemListFragment"
+        android:name="ee.game.naturehunter.ui.ItemListFragment"
         android:label="@string/hunt_view"
         tools:layout="@layout/fragment_item_list">
         <action
@@ -23,14 +23,14 @@
             app:destination="@id/addItemFragment" />
         <argument
             android:name="type"
-            app:argType="com.example.naturehunter.constant.Type" />
+            app:argType="ee.game.naturehunter.constant.Type" />
         <action
             android:id="@+id/action_itemListFragment_to_itemViewFragment"
             app:destination="@id/itemViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
-        android:name="com.example.naturehunter.ui.AddItemFragment"
+        android:name="ee.game.naturehunter.ui.AddItemFragment"
         android:label=""
         tools:layout="@layout/fragment_add_item" >
         <action
@@ -49,14 +49,14 @@
             android:defaultValue="-1" />
         <argument
             android:name="type"
-            app:argType="com.example.naturehunter.constant.Type" />
+            app:argType="ee.game.naturehunter.constant.Type" />
         <argument
             android:name="uri"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/itemViewFragment"
-        android:name="com.example.naturehunter.ui.ItemViewFragment"
+        android:name="ee.game.naturehunter.ui.ItemViewFragment"
         android:label="@string/hunt_view"
         tools:layout="@layout/fragment_item_view">
         <argument
@@ -68,7 +68,7 @@
             app:popUpToInclusive="false" />
         <argument
             android:name="type"
-            app:argType="com.example.naturehunter.constant.Type" />
+            app:argType="ee.game.naturehunter.constant.Type" />
         <argument
             android:name="uri"
             app:argType="string" />

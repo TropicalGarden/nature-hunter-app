@@ -7,7 +7,7 @@
 
         <variable
             name="itemViewFragment"
-            type="com.example.naturehunter.ui.ItemViewFragment" />
+            type="ee.game.naturehunter.ui.ItemViewFragment" />
 
     </data>
 
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         android:onClick="@{() -> itemViewFragment.toggleBars()}"
-        tools:context=".ui.ItemViewFragment">
+        tools:context="ee.game.naturehunter.ui.ItemViewFragment">
 
         <ImageView
             android:id="@+id/view_item_image_view"

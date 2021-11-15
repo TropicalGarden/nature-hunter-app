@@ -7,11 +7,11 @@
 
         <variable
             name="categoryViewModel"
-            type="com.example.naturehunter.viewmodel.CategoryViewModel" />
+            type="ee.game.naturehunter.viewmodel.CategoryViewModel" />
 
         <variable
             name="constant"
-            type="com.example.naturehunter.constant.C" />
+            type="ee.game.naturehunter.constant.C" />
 
     </data>
 
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/border_with_element"
-            tools:context="ui.SelectCategoryFragment">
+            tools:context="ee.game.naturehunter.ui.SelectCategoryFragment">
 
             <TextView
                 android:id="@+id/title_text"

@@ -9,7 +9,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.example.naturehunter"
+        applicationId "ee.game.naturehunter"
         minSdk 21
         targetSdk 30
         versionCode 1

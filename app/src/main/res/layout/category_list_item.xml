@@ -8,7 +8,7 @@
 
         <variable
             name="typeItem"
-            type="com.example.naturehunter.model.TypeItem" />
+            type="ee.game.naturehunter.model.TypeItem" />
 
     </data>
 

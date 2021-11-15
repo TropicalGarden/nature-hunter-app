@@ -7,11 +7,11 @@
 
         <variable
             name="itemListFragment"
-            type="com.example.naturehunter.ui.ItemListFragment" />
+            type="ee.game.naturehunter.ui.ItemListFragment" />
 
         <variable
             name="itemViewModel"
-            type="com.example.naturehunter.viewmodel.ItemViewModel" />
+            type="ee.game.naturehunter.viewmodel.ItemViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:padding="@dimen/border_with_element"
-        tools:context=".ui.ItemListFragment">
+        tools:context="ee.game.naturehunter.ui.ItemListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_list_recycler_view"

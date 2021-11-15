@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/border_with_element"
-            tools:context=".ui.AddItemFragment">
+            tools:context="ee.game.naturehunter.ui.AddItemFragment">
 
             <ImageView
                 android:id="@+id/image_preview"
