@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Nature Hunter</string>
+    <string name="hunt_reward">HUNT REWARD: %d</string>
+    <string name="hunts">%d</string>
+    <string name="progress_points">%d/%d</string>
+    <string name="rank">%d/%d</string>
+    <string name="progress_percentage">Rank Progress %d%%</string>
+    <string name="progress_percentage_multiplier">Multiplier Progress %d%%</string>
+    <string name="maximum_rank">Maximum Rank</string>
+    <string name="total_points">%d</string>
+    <string name="hunting_board">HUNTING BOARD</string>
+    <string name="total_points_text">Total Points:</string>
+    <string name="total_hunts_text">Total Hunts:</string>
+    <string name="rank_text">Rank:</string>
+    <string name="points">Points:</string>
+    <string name="multiplier_text">Multiplier:</string>
+    <string name="hunts_text">Hunts:</string>
+    <string name="multiplier">%dX</string>
+    <string name="select_category">Select Category</string>
+    <string name="hunted">Hunted %ss</string>
+    <string name="hunted_fungi">Hunted Fungi</string>
+    <string name="item_name">Name: %s</string>
+    <string name="item_species">Species: %s</string>
+    <string name="add">Add %s</string>
+    <string name="edit">Edit %s</string>
+    <string name="name">Name *</string>
+    <string name="species_optional">Species (Optional)</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="hunt_view">Hunt View</string>
+    <string name="error">Hunt must have a name!</string>
+    <string name="maximum_multiplier">Maximum multiplier</string>
+</resources>

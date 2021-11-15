@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="categoryViewModel"
+            type="com.example.naturehunter.viewmodel.CategoryViewModel" />
+
+        <variable
+            name="constant"
+            type="com.example.naturehunter.constant.C" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/border_with_element"
+            tools:context="ui.SelectCategoryFragment">
+
+            <TextView
+                android:id="@+id/title_text"
+                style="@style/Widget.NatureHunter.TextView.MainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginTop="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:text="@string/hunting_board"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/total_points_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:text="@string/total_points_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+            <TextView
+                android:id="@+id/total_points"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:text="@{categoryViewModel.totalPoints.toString()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_text"
+                tools:text="8500" />
+
+            <TextView
+                android:id="@+id/total_hunts_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:text="@string/total_hunts_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_points_text" />
+
+            <TextView
+                android:id="@+id/total_hunts"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{categoryViewModel.totalHunts.toString()}"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_points"
+                tools:text="30" />
+
+            <TextView
+                android:id="@+id/rank_title_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:text="@string/rank_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_hunts_text" />
+
+            <TextView
+                android:id="@+id/rank_title"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                rankName="@{categoryViewModel.rank}"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_hunts"
+                tools:text="Worm" />
+
+            <ImageView
+                android:id="@+id/rank_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                android:importantForAccessibility="no"
+                rankImageSource="@{categoryViewModel.rank}"
+                app:layout_constraintBottom_toBottomOf="@id/rank_title"
+                app:layout_constraintEnd_toStartOf="@id/rank_title"
+                app:layout_constraintTop_toTopOf="@+id/rank_title"
+                app:tint="?colorPrimaryVariant"
+                tools:src="@drawable/ic_worm" />
+
+            <TextView
+                android:id="@+id/rank_progress_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                rankProgressText="@{categoryViewModel.rankProgress}"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rank_title_text"
+                tools:text="Rank Progress 45%" />
+
+            <ProgressBar
+                android:id="@+id/rank_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:progress="@{categoryViewModel.rankProgress}"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:layout_marginTop="@dimen/margin_between_elements"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rank_progress_text"
+                tools:progress="40" />
+
+            <TextView
+                android:id="@+id/rank_number"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:text="@{@string/rank(categoryViewModel.rank, constant.FINAL_RANK)}"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rank_progress"
+                tools:text="4/10" />
+
+            <TextView
+                android:id="@+id/point_progress"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_between_double_elements"
+                android:text="@{@string/progress_points(categoryViewModel.rankPoints, categoryViewModel.rankUpCriteria)}"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="@dimen/margin_between_double_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rank_progress"
+                tools:text="450/1000" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_between_double_elements"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:spanCount="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rank_number"
+                tools:itemCount="16"
+                tools:listitem="@layout/category_list_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

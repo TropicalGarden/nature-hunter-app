@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="typeItem"
+            type="com.example.naturehunter.model.TypeItem" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/plant_type"
+        style="@style/Widget.NatureHunter.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/border">
+
+            <TextView
+                android:id="@+id/item_type"
+                style="@style/Widget.NatureHunter.TextView.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{typeItem.type.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ANIMAL" />
+
+            <View
+                android:id="@+id/item_type_divider"
+                style="@style/Divider"
+                app:layout_constraintEnd_toEndOf="@id/item_type"
+                app:layout_constraintStart_toStartOf="@id/item_type"
+                app:layout_constraintTop_toBottomOf="@+id/item_type" />
+
+            <TextView
+                android:id="@+id/reward_text"
+                style="@style/Widget.NatureHunter.TextView.Fat"
+                huntReward="@{typeItem}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_type_divider"
+                tools:text="HUNT REWARD: 50" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                multiplierProgress="@{typeItem}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reward_text"
+                tools:text="Multiplier Progress: 40%" />
+
+            <ProgressBar
+                android:id="@+id/multiplier_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_between_elements"
+                multiplierProgressBar="@{typeItem}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progress_text"
+                tools:progress="40" />
+
+            <ImageView
+                android:id="@+id/plant_type_button"
+                typeImageSource="@{typeItem.type}"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:background="@color/green_400"
+                android:importantForAccessibility="no"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/multiplier_progress_bar"
+                tools:src="@drawable/ic_insect" />
+
+            <TextView
+                android:id="@+id/points_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/points"
+                app:layout_constraintBottom_toTopOf="@+id/multiplier_text"
+                app:layout_constraintEnd_toStartOf="@+id/points"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/plant_type_button" />
+
+            <TextView
+                android:id="@+id/points"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                typePoints="@{typeItem.points}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/multiplier"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/points_text"
+                app:layout_constraintTop_toBottomOf="@+id/plant_type_button"
+                tools:text="2500" />
+
+            <TextView
+                android:id="@+id/multiplier_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multiplier_text"
+                app:layout_constraintBottom_toTopOf="@+id/hunts_text"
+                app:layout_constraintEnd_toStartOf="@+id/multiplier"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/points_text" />
+
+            <TextView
+                android:id="@+id/multiplier"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/multiplier(typeItem.multiplier)}"
+                app:layout_constraintBottom_toTopOf="@+id/huntCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/multiplier_text"
+                app:layout_constraintTop_toBottomOf="@+id/points"
+                tools:text="4X" />
+
+            <TextView
+                android:id="@+id/hunts_text"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hunts_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/huntCount"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/multiplier_text" />
+
+            <TextView
+                android:id="@+id/huntCount"
+                style="@style/Widget.NatureHunter.TextView.Light"
+                huntCount="@{typeItem.items.size}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hunts_text"
+                app:layout_constraintTop_toBottomOf="@+id/multiplier"
+                tools:text="35" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
