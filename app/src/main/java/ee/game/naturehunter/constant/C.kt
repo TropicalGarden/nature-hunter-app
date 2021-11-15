@@ -18,4 +18,5 @@ object C {
     const val MAXIMUM_PERCENTAGE = 100
 
     const val ITEM_VIEW_FRAGMENT = "itemViewFragment"
+    const val ADD_ITEM_VIEW_FRAGMENT = "addItemViewFragment"
 }

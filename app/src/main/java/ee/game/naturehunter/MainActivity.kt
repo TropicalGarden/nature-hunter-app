@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import ee.game.naturehunter.R
 import ee.game.naturehunter.constant.C
+import ee.game.naturehunter.ui.AddItemFragmentDirections
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -22,8 +23,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        val currentDestination = navController.currentDestination
-        if (currentDestination?.displayName?.contains(C.ITEM_VIEW_FRAGMENT) == true) {
+        if (navController.currentDestination?.id != navController.graph.startDestination) {
             navController.navigateUp()
         } else {
             super.onBackPressed()
