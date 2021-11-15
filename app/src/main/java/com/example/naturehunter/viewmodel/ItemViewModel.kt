@@ -8,11 +8,15 @@ import com.example.naturehunter.data.model.Item
 import kotlinx.coroutines.launch
 import java.io.File
 
-class ItemViewModel(private val itemDao: ItemDao, type: Type) : ViewModel() {
+class ItemViewModel(private val itemDao: ItemDao) : ViewModel() {
 
-    val items: LiveData<List<Item>> = itemDao.getItemsByType(type.name).asLiveData()
+    lateinit var items: LiveData<List<Item>>
 
     lateinit var pictureUri: String
+
+    fun updateItems(type: Type) {
+        items = itemDao.getItemsByType(type.name).asLiveData()
+    }
 
     private fun insertItem(item: Item) {
         viewModelScope.launch { itemDao.insert(item) }
@@ -72,13 +76,13 @@ class ItemViewModel(private val itemDao: ItemDao, type: Type) : ViewModel() {
 
 }
 
-class ItemViewModelFactory(private val itemDao: ItemDao, private val type: Type) :
+class ItemViewModelFactory(private val itemDao: ItemDao) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ItemViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ItemViewModel(itemDao, type) as T
+            return ItemViewModel(itemDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

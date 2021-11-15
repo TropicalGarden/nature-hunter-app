@@ -31,8 +31,7 @@ class AddItemFragment : Fragment() {
 
     private val itemViewModel: ItemViewModel by activityViewModels {
         ItemViewModelFactory(
-            (activity?.application as NatureApplication).database.itemDao(),
-            navigationArguments.type
+            (activity?.application as NatureApplication).database.itemDao()
         )
     }
 

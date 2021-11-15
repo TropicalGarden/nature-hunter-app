@@ -32,8 +32,7 @@ class ItemListFragment : Fragment() {
 
     private val itemViewModel: ItemViewModel by activityViewModels {
         ItemViewModelFactory(
-            (activity?.application as NatureApplication).database.itemDao(),
-            navigationArguments.type
+            (activity?.application as NatureApplication).database.itemDao()
         )
     }
 
@@ -47,6 +46,7 @@ class ItemListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        itemViewModel.updateItems(navigationArguments.type)
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
