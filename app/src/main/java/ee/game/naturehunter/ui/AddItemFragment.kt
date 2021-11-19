@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ee.game.naturehunter.NatureApplication
 import ee.game.naturehunter.R
 import ee.game.naturehunter.constant.Type
@@ -20,7 +21,6 @@ import ee.game.naturehunter.data.model.Item
 import ee.game.naturehunter.databinding.FragmentAddItemBinding
 import ee.game.naturehunter.viewmodel.ItemViewModel
 import ee.game.naturehunter.viewmodel.ItemViewModelFactory
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AddItemFragment : Fragment() {
 
@@ -31,7 +31,8 @@ class AddItemFragment : Fragment() {
 
     private val itemViewModel: ItemViewModel by activityViewModels {
         ItemViewModelFactory(
-            (activity?.application as NatureApplication).database.itemDao()
+            (activity?.application as NatureApplication).database.itemDao(),
+            requireActivity().application
         )
     }
 
@@ -106,28 +107,28 @@ class AddItemFragment : Fragment() {
             itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
             itemSpecies.setText(item.itemSpecies, TextView.BufferType.SPANNABLE)
             saveItem.setOnClickListener { updateItem() }
-            deleteItem.setOnClickListener { showConfirmationDialog() }
+            deleteItem.setOnClickListener { showConfirmationDialog(item) }
         }
     }
 
-    private fun showConfirmationDialog() {
+    private fun showConfirmationDialog(item: Item) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(android.R.string.dialog_alert_title))
             .setMessage(getString(R.string.delete_question))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.no)) { _, _ -> }
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                deleteItem()
+                deleteItem(item)
             }
             .show()
     }
 
-    private fun deleteItem() {
-        val id = navigationArguments.id
+    private fun deleteItem(item: Item) {
+        val id = item.id
+        val fileUri = item.itemUri.toUri()
+
+        itemViewModel.deletePictureFile(fileUri)
         itemViewModel.deleteItem(id)
-        itemViewModel.retrieveItem(id).observe(viewLifecycleOwner) {
-            itemViewModel.deletePictureFile(it.itemUri.toUri())
-        }
         startItemListFragment()
     }
 

@@ -1,14 +1,18 @@
 package ee.game.naturehunter.viewmodel
 
+import android.app.Application
 import android.net.Uri
+import android.util.Log
+import androidx.core.net.toUri
 import androidx.lifecycle.*
 import ee.game.naturehunter.constant.Type
 import ee.game.naturehunter.data.ItemDao
 import ee.game.naturehunter.data.model.Item
 import kotlinx.coroutines.launch
 import java.io.File
+import java.net.URI
 
-class ItemViewModel(private val itemDao: ItemDao) : ViewModel() {
+class ItemViewModel(private val itemDao: ItemDao, private val application: Application) : ViewModel() {
 
     lateinit var items: LiveData<List<Item>>
 
@@ -29,7 +33,13 @@ class ItemViewModel(private val itemDao: ItemDao) : ViewModel() {
     }
 
     fun deletePictureFile(uri: Uri) {
-        File(uri.path!!).delete()
+        val appContext = application.applicationContext
+        val fileName = uri.path!!.substringAfterLast("/")
+        val filePath = "${appContext.filesDir.path}/$fileName"
+        val file = File(filePath)
+        if (file.exists()) {
+            file.delete()
+        }
     }
 
     private fun updateItem(item: Item) {
@@ -76,13 +86,13 @@ class ItemViewModel(private val itemDao: ItemDao) : ViewModel() {
 
 }
 
-class ItemViewModelFactory(private val itemDao: ItemDao) :
+class ItemViewModelFactory(private val itemDao: ItemDao, private val application: Application) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ItemViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ItemViewModel(itemDao) as T
+            return ItemViewModel(itemDao, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

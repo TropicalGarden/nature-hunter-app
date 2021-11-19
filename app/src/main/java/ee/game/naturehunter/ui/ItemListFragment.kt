@@ -3,6 +3,7 @@ package ee.game.naturehunter.ui
 import android.Manifest
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,8 @@ class ItemListFragment : Fragment() {
 
     private val itemViewModel: ItemViewModel by activityViewModels {
         ItemViewModelFactory(
-            (activity?.application as NatureApplication).database.itemDao()
+            (activity?.application as NatureApplication).database.itemDao(),
+            requireActivity().application
         )
     }
 
@@ -88,11 +90,7 @@ class ItemListFragment : Fragment() {
     }
 
     private fun createFileUri(): Uri {
-        val file = File.createTempFile("image_file", ".png", requireActivity().cacheDir)
-            .apply {
-                createNewFile()
-                deleteOnExit()
-            }
+        val file = File.createTempFile("image_file", ".png", requireActivity().filesDir)
         return FileProvider.getUriForFile(
             requireContext(),
             "${BuildConfig.APPLICATION_ID}.provider",
