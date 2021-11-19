@@ -1,10 +1,12 @@
 package ee.game.naturehunter.ui
 
+import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -36,6 +38,26 @@ class ItemListFragment : Fragment() {
         )
     }
 
+    private val requestCamera =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { permissionGranted ->
+            if (permissionGranted) {
+                takePicture()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.camera_permission),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    private val takeImageResult =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+            if (isSuccess) {
+                startAddItemFragment(navigationArguments.type)
+            }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -51,12 +73,12 @@ class ItemListFragment : Fragment() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             itemViewModel = this@ItemListFragment.itemViewModel
-            itemListFragment = this@ItemListFragment
             itemListRecyclerView.adapter = ItemListAdapter(findNavController())
+            huntFab.setOnClickListener { requestCamera.launch(Manifest.permission.CAMERA) }
         }
     }
 
-    fun takePicture() {
+    private fun takePicture() {
         lifecycleScope.launchWhenStarted {
             createFileUri().let {
                 itemViewModel.pictureUri = it.toString()
@@ -77,13 +99,6 @@ class ItemListFragment : Fragment() {
             file
         )
     }
-
-    private val takeImageResult =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
-            if (isSuccess) {
-                startAddItemFragment(navigationArguments.type)
-            }
-        }
 
     private fun startAddItemFragment(itemType: Type) {
         findNavController().navigate(

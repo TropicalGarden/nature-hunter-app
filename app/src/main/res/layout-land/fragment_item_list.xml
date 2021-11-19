@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="itemListFragment"
-            type="ee.game.naturehunter.ui.ItemListFragment" />
-
-        <variable
             name="itemViewModel"
             type="ee.game.naturehunter.viewmodel.ItemViewModel" />
 
@@ -45,7 +41,6 @@
             android:layout_marginEnd="@dimen/margin_between_elements"
             android:layout_marginBottom="@dimen/margin_between_elements"
             android:importantForAccessibility="no"
-            android:onClick="@{() -> itemListFragment.takePicture()}"
             android:src="@android:drawable/ic_input_add"
             app:backgroundTint="?colorSecondary"
             app:elevation="0dp"

@@ -33,4 +33,5 @@
     <string name="hunt_view">Hunt View</string>
     <string name="error">Hunt must have a name!</string>
     <string name="maximum_multiplier">Maximum multiplier</string>
+    <string name="camera_permission">App needs camera permissions!</string>
 </resources>
